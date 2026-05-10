@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
 
@@ -17,9 +17,19 @@ export default function AddMedScreen({ navigation }) {
 
   useEffect(() => {
     (async () => {
+      // nota para mi: peticion de permisos
       const { status } = await Notifications.requestPermissionsAsync();
       if (status !== 'granted') {
         Alert.alert('Ey', 'Necesitamos permisos para mandarte los recordatorios');
+      }
+
+      if (Platform.OS === 'android') {
+        await Notifications.setNotificationChannelAsync('recordatorios', {
+          name: 'Recordatorios de Medicación',
+          importance: Notifications.AndroidImportance.MAX,
+          vibrationPattern: [0, 250, 250, 250],
+          lightColor: '#FF231F7C',
+        });
       }
     })();
   }, []);
@@ -44,7 +54,10 @@ export default function AddMedScreen({ navigation }) {
           title: "¡Hora de tu medicación! 💊",
           body: `Te toca tomar: ${name}`,
         },
-        trigger: { seconds: 5 },
+        trigger: { 
+          seconds: 5,
+          channelId: 'recordatorios', 
+        },
       });
 
       navigation.goBack();
