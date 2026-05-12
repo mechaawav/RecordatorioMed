@@ -17,3 +17,5 @@
 * Notificación local programada automáticamente al agregar un medicamento (5 segundos después para fines de prueba).
 
 ## Video DEMO
+
+* https://youtu.be/TbonOI93L9s?si=m6lRMcJlehsVs3lv
