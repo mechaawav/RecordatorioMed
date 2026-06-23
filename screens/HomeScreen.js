@@ -1,36 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import useMedStore from '../store/useMedStore';
 import MedicationCard from '../components/MedicationCard';
 
 export default function HomeScreen({ navigation }) {
-  const [meds, setMeds] = useState([]);
+  const { meds, loadMeds, deleteMed } = useMedStore();
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       loadMeds();
     });
     return unsubscribe;
-  }, [navigation]);
-
-  const loadMeds = async () => {
-    try {
-      const data = await AsyncStorage.getItem('@meds_list');
-      if (data) setMeds(JSON.parse(data));
-    } catch (e) {
-      console.log('Error leyendo meds', e);
-    }
-  };
-
-  const deleteMed = async (id) => {
-    try {
-      const filteredMeds = meds.filter(m => m.id !== id);
-      setMeds(filteredMeds);
-      await AsyncStorage.setItem('@meds_list', JSON.stringify(filteredMeds));
-    } catch (e) {
-      console.log('Error borrando', e);
-    }
-  };
+  }, [navigation, loadMeds]);
 
   const handleLogout = () => {
     navigation.replace('Login');
@@ -50,12 +31,12 @@ export default function HomeScreen({ navigation }) {
         />
       )}
 
-      {/* nota para mi: Botón flotante para agregar */}
+      {/* Botón flotante para agregar */}
       <TouchableOpacity style={styles.fab} onPress={() => navigation.navigate('AddMed')}>
         <Text style={styles.fabIcon}>+</Text>
       </TouchableOpacity>
 
-      {/* nota para mi: Botón de logout abajito */}
+      {/* Botón de logout abajito */}
       <TouchableOpacity onPress={handleLogout} style={styles.btnLogout}>
         <Text style={styles.btnLogoutTxt}>Cerrar Sesión</Text>
       </TouchableOpacity>
