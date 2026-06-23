@@ -1,21 +1,19 @@
-# MedCheck - Parcial 1 Aplicaciones Móviles
+# MedCheck 💊
 
-**Opción Elegida:** Recordatorio de medicación.
+**Opción:** Recordatorio de medicación.
 
-## ¿Cómo ejecutar la app?
-1. Clonar el repositorio.
-2. Abrir la terminal en la carpeta del proyecto y ejecutar `npm install`.
-3. Ejecutar `npx expo start`.
-4. Escanear el QR con Expo Go en un dispositivo móvil o presionar 'a' para el emulador de Android.
+## Funcionalidades
+* **Gestión de estado:** Implementación de Zustand para centralizar medicamentos y preferencias.
+* **Hardware:** Acceso a cámara/galería, ubicación GPS, contactos y calendario.
+* **Seguridad:** Manejo de permisos con estados de respuesta al usuario.
+* **Testing:** Suite con Jest y RNTL para componentes, lógica de negocio y store.
 
-## Funcionalidades implementadas:
-* Navegación por Stack (Login -> Home -> Add).
-* Autenticación local mediante AsyncStorage (Registro y Login).
-* Listado de medicamentos con componente reutilizable.
-* Funcionalidad para dar de alta un medicamento y eliminarlo.
-* Persistencia total de los datos.
-* Notificación local programada automáticamente al agregar un medicamento (5 segundos después para fines de prueba).
+## Ejecución
+1. `npm install`
+2. `npx expo start`
 
-## Video DEMO
+## Tests
+* `npm test`
 
-* https://youtu.be/mqoC9jI17GQ?si=rX8XSr8Jw-U8a58u
+## Demo
+* [Link al video en YouTube]
