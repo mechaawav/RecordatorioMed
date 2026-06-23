@@ -55,6 +55,7 @@ export default function AddMedScreen({ navigation }) {
           body: `Te toca tomar: ${name}`,
         },
         trigger: { 
+          type: 'time',
           seconds: 5,
           channelId: 'recordatorios', 
         },
