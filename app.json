@@ -5,25 +5,38 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Necesitamos acceso a tu galería para seleccionar fotos de medicamentos",
+          "cameraPermission": "Necesitamos acceso a la cámara para tomar fotos"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermissions": "Te permitiremos obtener tu ubicación para guardar dónde compras tus medicamentos"
+        }
+      ],
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "Necesitamos acceso a tus contactos para asociar médicos con medicamentos"
+        }
+      ],
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "Necesitamos acceso a tu calendario para crear recordatorios de medicación"
+        }
+      ]
+    ]
   }
 }
+
